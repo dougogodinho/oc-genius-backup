@@ -1,0 +1,17 @@
+<script>
+    var onBackup = function (v) {
+
+        var $this = $(v);
+        var prevText = $this.html();
+        $this.html('Backuping...').attr('disabled', '').request('<?= $this->getEventHandler('onBackup') ?>', {
+            'complete': function (){ $this.html(prevText).removeAttr('disabled') },
+        });
+    }
+</script>
+<div class="report-widget">
+
+    <h3>Backup Application</h3>
+
+    <button type="button" class="btn btn-primary" onclick="onBackup(this)">Backup now!</button>
+
+</div>
