@@ -51,7 +51,7 @@ class Backup extends Command
             'index.php',
         ]);
 
-        system("cd $base_path && $mysqldump -h$host -u$username -p$password --lock-tables $database > $sql_file && zip $zip_file $files");
+        system("cd '$base_path' && $mysqldump -h$host -u$username -p$password --lock-tables $database > $sql_file && zip -r $zip_file $files");
 
         // fim
         $this->info('--');

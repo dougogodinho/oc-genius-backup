@@ -1,4 +1,4 @@
-# Genius Storage Cleaner
+# Genius Backup
 
 - [Description](#description)
 - [Usage](#usage)
@@ -22,7 +22,8 @@ After install run:
 
 - Translate
 - Save backups in private storage
-- History for backups in database
+- Interface
+- Backup in shared hosts
 
 
 

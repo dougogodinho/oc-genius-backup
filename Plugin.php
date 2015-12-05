@@ -1,5 +1,7 @@
 <?php namespace Genius\Backup;
 
+use Genius\Backup\Models\Settings;
+use Genius\Backup\ReportWidgets\Backup;
 use System\Classes\PluginBase;
 
 /**
@@ -23,11 +25,6 @@ class Plugin extends PluginBase
         ];
     }
 
-    /**
-     * Register events and more.
-     *
-     * @return void
-     */
     public function register()
     {
         $this->registerConsoleCommand('genius.backup', 'Genius\Backup\Console\Backup');
@@ -36,11 +33,26 @@ class Plugin extends PluginBase
     public function registerReportWidgets()
     {
         return [
-            ReportWidgets\Backup::class => [
+            Backup::class => [
                 'label'   => 'Backup',
                 'context' => 'dashboard'
             ],
         ];
     }
 
+//    public function registerSettings()
+//    {
+//        return [
+//            'settings' => [
+//                'label'       => 'genius.backup::lang.settings.label',
+//                'description' => 'genius.backup::lang.settings.description',
+//                'category'    => 'system::lang.system.categories.system',
+//                'icon'        => 'icon-shield',
+//                'class'       => Settings::class,
+//                'order'       => 1000,
+//                'keywords'    => 'security backup',
+//                'permissions' => ['backend.manage_preferences']
+//            ]
+//        ];
+//    }
 }
