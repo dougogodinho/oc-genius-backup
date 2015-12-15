@@ -18,8 +18,6 @@ class Backup extends ReportWidgetBase
     public function onBackup ()
     {
         ob_start();
-        Artisan::call('storage:clear');
-        Artisan::call('cache:clear');
         Artisan::call('backup');
         ob_clean();
         Flash::success('Success!');

@@ -1,5 +1,6 @@
 <?php namespace Genius\Backup\Console;
 
+use Artisan;
 use Illuminate\Support\Facades\Config;
 use Storage;
 use Illuminate\Console\Command;
@@ -28,6 +29,9 @@ class Backup extends Command
         // início
         $this->info('--');
 
+        Artisan::call('storage:clear');
+        Artisan::call('cache:clear');
+
         $mysqldump = $this->getDumpCommand();
         $conn = Config::get('database.default');
         $host = Config::get("database.connections.$conn.host");
@@ -51,7 +55,7 @@ class Backup extends Command
             'index.php',
         ]);
 
-        system("cd '$base_path' && $mysqldump -h$host -u$username -p$password --lock-tables $database > $sql_file && zip -r $zip_file $files");
+        system("cd '$base_path' && $mysqldump -h$host -u$username -p$password --lock-tables $database > $sql_file && zip -r $zip_file $files -x '*.DS_Store' -x '*__MACOSX' -x '*.git*'");
 
         // fim
         $this->info('--');
